@@ -1,9 +1,7 @@
-// components/products/ProductList.tsx
-
 "use client";
 
-import React, { useMemo } from "react";
-import { Tabs, Tab, Spacer, Link } from "@nextui-org/react";
+import React, { useState, useMemo } from "react";
+import { Tabs, Tab, Checkbox, Spacer, Link } from "@nextui-org/react";
 import CardProduct from "./CardProduct";
 import { products } from "@/mock/_products-tiers";
 import { Product } from "@/types/product-types";
@@ -11,20 +9,30 @@ import { Product } from "@/types/product-types";
 interface ProductListProps {}
 
 export default function ProductList(props: ProductListProps) {
-  // Grouper les produits par catégorie
+  const [showVipOnly, setShowVipOnly] = useState(false);
+  const [selectedDuration, setSelectedDuration] = useState("all");
+
   const groupedProducts = useMemo(() => {
-    const categories = {
-      "Royal C2": products.filter((p) => p.name.startsWith("Royal C2")),
-      "Royal Src": products.filter((p) => p.name.startsWith("Royal SRC")),
-      "Royal Proxy": products.filter((p) => p.name.startsWith("Royal Proxy")),
-      "Royal Api": products.filter((p) => p.name.startsWith("Royal API")),
+    const durations = {
+      "all": "Tous les plans",
+      "days": "Plans en jours",
+      "months": "Plans en mois",
+      "lifetime": "Plans à vie",
     };
-    return categories;
-  }, []);
+
+    const filteredProducts = products.filter(product => 
+      (showVipOnly ? product.is_vip : true) &&
+      (selectedDuration === "all" || 
+       (selectedDuration === "days" && product.duration.includes("day")) ||
+       (selectedDuration === "months" && product.duration.includes("month")) ||
+       (selectedDuration === "lifetime" && product.duration === "Lifetime"))
+    );
+
+    return { durations, filteredProducts };
+  }, [showVipOnly, selectedDuration]);
 
   return (
     <div className="relative flex max-w-7xl flex-col items-center py-24">
-      {/* Fond décoratif */}
       <div
         aria-hidden="true"
         className="px:5 absolute inset-x-0 top-3 z-0 h-full w-full transform-gpu overflow-hidden blur-3xl md:right-20 md:h-auto md:w-auto md:px-36"
@@ -38,7 +46,6 @@ export default function ProductList(props: ProductListProps) {
         />
       </div>
 
-      {/* Contenu principal */}
       <div className="flex max-w-xl flex-col text-center">
         <h2 className="font-medium leading-7 text-secondary">Produits</h2>
         <h1 className="text-4xl font-medium tracking-tight">Obtenez un accès illimité.</h1>
@@ -49,28 +56,38 @@ export default function ProductList(props: ProductListProps) {
       </div>
       <Spacer y={8} />
 
-      {/* Onglets des catégories */}
-      <Tabs
-        classNames={{
-          tabList: "bg-default-100/70",
-          cursor: "bg-background dark:bg-default-200/30",
-          tab: "data-[hover-unselected=true]:opacity-90",
-        }}
-        radius="full"
-      >
-        {Object.keys(groupedProducts).map((category) => (
-          <Tab key={category} title={category}>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-              {groupedProducts[category].map((product) => (
-                <CardProduct key={product.id} product={product} />
-              ))}
-            </div>
-          </Tab>
+      <div className="flex flex-col items-center gap-4 w-full mb-8">
+        <Tabs 
+          selectedKey={selectedDuration} 
+          onSelectionChange={(key) => setSelectedDuration(key.toString())}
+          classNames={{
+            tabList: "bg-default-100/70",
+            cursor: "bg-background dark:bg-default-200/30",
+            tab: "data-[hover-unselected=true]:opacity-90",
+          }}
+          radius="full"
+        >
+          {Object.entries(groupedProducts.durations).map(([key, value]) => (
+            <Tab key={key} title={value} />
+          ))}
+        </Tabs>
+        <Checkbox
+          isSelected={showVipOnly}
+          onValueChange={setShowVipOnly}
+          color="secondary"
+        >
+          Afficher uniquement les plans VIP
+        </Checkbox>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+        {groupedProducts.filteredProducts.map((product) => (
+          <CardProduct key={product.id} product={product} />
         ))}
-      </Tabs>
+      </div>
+
       <Spacer y={12} />
 
-      {/* Section d'information supplémentaire */}
       <div className="flex py-2">
         <p className="text-default-400">
           Vous êtes un développeur open source ?&nbsp;
