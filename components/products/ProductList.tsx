@@ -48,10 +48,10 @@ export default function ProductList(props: ProductListProps) {
 
       <div className="flex max-w-xl flex-col text-center">
         <h2 className="font-medium leading-7 text-secondary">Produits</h2>
-        <h1 className="text-4xl font-medium tracking-tight">Obtenez un accès illimité.</h1>
+        <h1 className="text-4xl font-medium tracking-tight">Notre gamme complète de produits et trouvez celui qui vous convient !</h1>
         <Spacer y={4} />
         <h2 className="text-large text-default-500">
-          Découvrez le plan idéal, à partir de moins de 2€ par semaine.
+          Découvrez le plan idéal !
         </h2>
       </div>
       <Spacer y={8} />
@@ -90,10 +90,10 @@ export default function ProductList(props: ProductListProps) {
 
       <div className="flex py-2">
         <p className="text-default-400">
-          Vous êtes un développeur open source ?&nbsp;
-          <Link color="foreground" href="#" underline="always">
-            Obtenez une réduction
-          </Link>
+          Royal&nbsp;
+          {/* <Link color="foreground" href="#" underline="always">
+            
+          </Link> */}
         </p>
       </div>
     </div>
