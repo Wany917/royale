@@ -54,10 +54,8 @@ export default function Page() {
 
   const handleCTAClick = () => {
     if (pageIndex === 1) {
-      // Si nous sommes sur la page de paiement, redirigez vers la page de confirmation
       router.push('/checkout/f1a72da5-5ad6-493f-a8f9-e602bfe8c026');
     } else {
-      // Sinon, passez à la page suivante
       paginate(1);
     }
   };
@@ -126,7 +124,7 @@ export default function Page() {
     <>
       <div>
         <Button
-          className="-ml-2 text-default-700"
+          className="-ml-2 text-default-700 dark:text-white"
           isDisabled={pageIndex === 0}
           radius="full"
           variant="flat"
@@ -142,7 +140,7 @@ export default function Page() {
           <m.form
             key={pageIndex}
             animate="center"
-            className="mt-8 flex flex-col gap-3"
+            className="mt-8 flex flex-col gap-3 dark:text-white"
             custom={direction}
             exit="exit"
             initial="enter"
@@ -153,7 +151,7 @@ export default function Page() {
             variants={variants}
             onSubmit={(e) => e.preventDefault()}
           >
-            <h1 className="text-2xl font-medium">{stepTitle}</h1>
+            <h1 className="text-2xl font-medium dark:text-white">{stepTitle}</h1>
             {stepsContent}
             <Button
               fullWidth

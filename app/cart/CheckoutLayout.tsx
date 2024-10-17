@@ -32,7 +32,7 @@ export default function CheckoutLayout({ children }: CheckoutLayoutProps) {
               <span className="text-small font-semibold text-default-700">{cartTotal}</span>
               <span className="ml-1 text-small text-default-500">({cartItemCount} items)</span>
             </p>
-            <Badge content={cartItemCount} showOutline={false}>
+            <Badge content={cartItemCount} showOutline={false} className="">
               <Icon icon="solar:cart-check-outline" width={28} />
             </Badge>
           </div>
@@ -42,19 +42,19 @@ export default function CheckoutLayout({ children }: CheckoutLayoutProps) {
           {isClient && (
             <div className="mt-auto flex w-full justify-between gap-8 pb-8 pt-4">
               <div className="flex w-full flex-col items-start gap-2">
-                <p className="text-small font-medium">Review</p>
+                <p className="text-small font-medium dark:text-white">Review</p>
                 <Progress
                   classNames={{
-                    indicator: "!bg-foreground",
+                    indicator: "!bg-gradient-to-r from-primary to-secondary",
                   }}
                   value={currentStep >= 0 ? 100 : 0}
                 />
               </div>
               <div className="flex w-full flex-col items-start gap-2">
-                <p className="text-small font-medium">Payment</p>
+                <p className="text-small font-medium dark:text-white">Payment</p>
                 <Progress
                   classNames={{
-                    indicator: "!bg-foreground",
+                    indicator: "!bg-gradient-to-r from-primary to-secondary",
                   }}
                   value={currentStep >= 1 ? 100 : 0}
                 />
