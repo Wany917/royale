@@ -1,8 +1,8 @@
-import type {RadioProps} from "@nextui-org/react";
+import type { RadioProps } from "@nextui-org/react";
 
 import React from "react";
-import {useRadio, VisuallyHidden} from "@nextui-org/react";
-import {cn} from "@nextui-org/react";
+import { useRadio, VisuallyHidden } from "@nextui-org/react";
+import { cn } from "@nextui-org/react";
 
 export const PlanCustomRadio = (props: RadioProps) => {
   const {
@@ -28,7 +28,9 @@ export const PlanCustomRadio = (props: RadioProps) => {
       )}
     >
       {/*header*/}
-      <section className={"flex flex-row-reverse justify-between hover:bg-content2"}>
+      <section
+        className={"flex flex-row-reverse justify-between hover:bg-content2"}
+      >
         <VisuallyHidden>
           <input {...getInputProps()} />
         </VisuallyHidden>
@@ -47,7 +49,9 @@ export const PlanCustomRadio = (props: RadioProps) => {
             )}
           />
         </span>
-        <div>{description && <span {...getLabelProps()}>{description}</span>}</div>
+        <div>
+          {description && <span {...getLabelProps()}>{description}</span>}
+        </div>
       </section>
       {/*  content*/}
       {children && <div>{children}</div>}

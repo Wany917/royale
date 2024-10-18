@@ -1,7 +1,8 @@
 "use client";
 
-import { Logo } from "@/components/icons";
 import { User } from "@nextui-org/react";
+
+import { Logo } from "@/components/icons";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -49,8 +50,8 @@ export default function AuthLayout({ children }: LayoutProps) {
           <p className="w-full text-right text-2xl text-black/60">
             <span className="font-medium">“</span>
             <span className="font-normal italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget augue nec massa
-              volutpat aliquet.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget
+              augue nec massa volutpat aliquet.
             </span>
             <span className="font-medium">”</span>
           </p>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button, Divider, Input } from "@nextui-org/react";
+
 import { Product } from "@/types/product-types";
 
 export type OrderSummaryProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -12,7 +13,7 @@ export type OrderSummaryProps = React.HTMLAttributes<HTMLDivElement> & {
 const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
   ({ hideTitle, items, ...props }, ref) => {
     const subtotal = items.reduce((acc, item) => acc + item.price, 0);
-    const tax = subtotal * 0.15; 
+    const tax = subtotal * 0.15;
     const total = subtotal + tax;
 
     return (
@@ -36,7 +37,10 @@ const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
           ))}
         </ul>
         <div>
-          <form className="mb-4 mt-6 flex items-end gap-2" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="mb-4 mt-6 flex items-end gap-2"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <Input
               classNames={{
                 label: "text-default-700",
@@ -53,22 +57,30 @@ const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
           <dl className="flex flex-col gap-4 py-4">
             <div className="flex justify-between">
               <dt className="text-small text-default-500">Subtotal</dt>
-              <dd className="text-small font-semibold text-default-700">${subtotal.toFixed(2)}</dd>
+              <dd className="text-small font-semibold text-default-700">
+                ${subtotal.toFixed(2)}
+              </dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-small text-default-500">Tax</dt>
-              <dd className="text-small font-semibold text-default-700">${tax.toFixed(2)}</dd>
+              <dd className="text-small font-semibold text-default-700">
+                ${tax.toFixed(2)}
+              </dd>
             </div>
             <Divider />
             <div className="flex justify-between">
-              <dt className="text-small font-semibold text-default-500">Total</dt>
-              <dd className="text-small font-semibold text-default-700">${total.toFixed(2)}</dd>
+              <dt className="text-small font-semibold text-default-500">
+                Total
+              </dt>
+              <dd className="text-small font-semibold text-default-700">
+                ${total.toFixed(2)}
+              </dd>
             </div>
           </dl>
         </div>
       </div>
     );
-  }
+  },
 );
 
 OrderSummary.displayName = "OrderSummary";

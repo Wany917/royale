@@ -3,10 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Spinner } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-
-import confetti from 'canvas-confetti';
-
-import { useRouter } from 'next/navigation';
+import confetti from "canvas-confetti";
+import { useRouter } from "next/navigation";
 
 const ThankYouPage = () => {
   const router = useRouter();
@@ -23,17 +21,17 @@ const ThankYouPage = () => {
     confetti({
       particleCount: 100,
       spread: 70,
-      origin: { y: 0.6 }
+      origin: { y: 0.6 },
     });
 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleConfetti = () => {
+  const handleConfetti = async () => {
     confetti({
       particleCount: 100,
       spread: 70,
-      origin: { y: 0.6 }
+      origin: { y: 0.6 },
     });
   };
 
@@ -61,14 +59,16 @@ const ThankYouPage = () => {
             </div>
           </div>
           <p className="text-center font-normal leading-7 text-default-500 sm:w-[466px] sm:text-[18px]">
-            Votre commande a été traitée avec succès. Vous recevrez bientôt un email de confirmation avec les détails de votre achat.
+            Votre commande a été traitée avec succès. Vous recevrez bientôt un
+            email de confirmation avec les détails de votre achat.
           </p>
           <div className="mt-4 text-center font-semibold text-xl text-primary">
             {isLoading ? (
               <Spinner color="primary" />
             ) : (
               <>
-                Numéro de commande: <span className="text-secondary">{orderNumber}</span>
+                Numéro de commande:{" "}
+                <span className="text-secondary">{orderNumber}</span>
               </>
             )}
           </div>
@@ -82,6 +82,7 @@ const ThankYouPage = () => {
             </Button>
             <Button
               className="h-10 w-[163px] border-1 border-default-100 px-[16px] py-[10px] text-small font-medium leading-5"
+              color="secondary"
               endContent={
                 <span className="pointer-events-none flex h-[22px] w-[22px] items-center justify-center rounded-full">
                   <Icon
@@ -93,15 +94,14 @@ const ThankYouPage = () => {
               }
               radius="full"
               variant="flat"
-              color="secondary"
-              onPress={() => router.push('/dashboard')}
+              onPress={() => router.push("/dashboard")}
             >
-              Client space
+              Espace client
             </Button>
           </div>
         </section>
         <div className="pointer-events-none absolute inset-0 top-[-25%] z-10 scale-150 select-none sm:scale-125">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-50" />
         </div>
       </main>
     </div>

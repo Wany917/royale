@@ -1,5 +1,5 @@
-import {Chip} from "@nextui-org/react";
-import {Icon} from "@iconify/react";
+import { Chip } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 
 import { SidebarItem } from "@/components/dashboard/sidebar";
 
@@ -16,7 +16,11 @@ export const items: SidebarItem[] = [
     icon: "solar:widget-2-outline",
     title: "Projects",
     endContent: (
-      <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
+      <Icon
+        className="text-default-400"
+        icon="solar:add-circle-line-duotone"
+        width={24}
+      />
     ),
   },
   {
@@ -25,7 +29,11 @@ export const items: SidebarItem[] = [
     icon: "solar:checklist-minimalistic-outline",
     title: "Tasks",
     endContent: (
-      <Icon className="text-default-400" icon="solar:add-circle-line-duotone" width={24} />
+      <Icon
+        className="text-default-400"
+        icon="solar:add-circle-line-duotone"
+        width={24}
+      />
     ),
   },
   {

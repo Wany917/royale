@@ -4,8 +4,8 @@ export default function PricingLayout({
   children: React.ReactNode;
 }) {
   return (
-      <div className="flex w-full items-center justify-center bg-background">
-        {children}
-      </div>
+    <div className="flex w-full items-center justify-center bg-background">
+      {children}
+    </div>
   );
 }

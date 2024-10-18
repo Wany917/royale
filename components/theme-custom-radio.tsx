@@ -1,15 +1,15 @@
-import type {RadioProps} from "@nextui-org/react";
+import type { RadioProps } from "@nextui-org/react";
 
 import React from "react";
-import {useRadio, VisuallyHidden} from "@nextui-org/react";
-import {cn} from "@nextui-org/react";
+import { useRadio, VisuallyHidden } from "@nextui-org/react";
+import { cn } from "@nextui-org/react";
 
 interface ThemeCustomRadioProps extends RadioProps {
   variant: "light" | "dark";
 }
 
 export const ThemeCustomRadio = (props: ThemeCustomRadioProps) => {
-  const {variant} = props;
+  const { variant } = props;
   const {
     Component,
     children,
@@ -54,7 +54,9 @@ export const ThemeCustomRadio = (props: ThemeCustomRadioProps) => {
       <div {...getLabelWrapperProps()}>
         {children && <span {...getLabelProps()}>{children}</span>}
         {description && (
-          <span className="text-small text-foreground opacity-70">{description}</span>
+          <span className="text-small text-foreground opacity-70">
+            {description}
+          </span>
         )}
       </div>
       <div

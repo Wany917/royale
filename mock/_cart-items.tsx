@@ -9,7 +9,8 @@ const cartItems: OrderSummaryItemType[] = [
     color: "black",
     size: "42",
     quantity: 1,
-    imageSrc: "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/1.png",
+    imageSrc:
+      "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/1.png",
   },
   {
     id: "2",
@@ -19,7 +20,8 @@ const cartItems: OrderSummaryItemType[] = [
     color: "red",
     size: "42",
     quantity: 1,
-    imageSrc: "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/2.png",
+    imageSrc:
+      "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/2.png",
   },
   {
     id: "3",
@@ -29,7 +31,8 @@ const cartItems: OrderSummaryItemType[] = [
     color: "blue",
     size: "42",
     quantity: 2,
-    imageSrc: "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/3.png",
+    imageSrc:
+      "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/shoes/3.png",
   },
 ];
 

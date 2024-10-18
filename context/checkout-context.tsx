@@ -1,7 +1,7 @@
 // CheckoutContext.tsx
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface CheckoutContextProps {
   currentStep: number;
@@ -12,13 +12,17 @@ interface CheckoutContextProps {
   setCartTotal: (total: string) => void;
 }
 
-const CheckoutContext = createContext<CheckoutContextProps | undefined>(undefined);
+const CheckoutContext = createContext<CheckoutContextProps | undefined>(
+  undefined,
+);
 
 export function useCheckout() {
   const context = useContext(CheckoutContext);
+
   if (!context) {
-    throw new Error('useCheckout must be used within a CheckoutProvider');
+    throw new Error("useCheckout must be used within a CheckoutProvider");
   }
+
   return context;
 }
 
@@ -29,7 +33,7 @@ interface CheckoutProviderProps {
 export function CheckoutProvider({ children }: CheckoutProviderProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [cartItemCount, setCartItemCount] = useState(0);
-  const [cartTotal, setCartTotal] = useState('');
+  const [cartTotal, setCartTotal] = useState("");
 
   return (
     <CheckoutContext.Provider

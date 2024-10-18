@@ -1,10 +1,20 @@
 "use client";
 
 import React from "react";
-import { Button, Card, CardBody, CardFooter, CardHeader, Divider, Link, Chip, cn } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Link,
+  Chip,
+  cn,
+} from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-import { Product } from "@/types/product-types";
 
+import { Product } from "@/types/product-types";
 
 interface CardProductProps {
   product: Product;
@@ -20,7 +30,11 @@ export default function CardProduct({ product }: CardProductProps) {
       shadow="md"
     >
       {product.is_vip ? (
-        <Chip className="absolute right-4 top-4" color="secondary" variant="flat">
+        <Chip
+          className="absolute right-4 top-4"
+          color="secondary"
+          variant="flat"
+        >
           VIP
         </Chip>
       ) : null}
@@ -48,13 +62,7 @@ export default function CardProduct({ product }: CardProductProps) {
         </ul>
       </CardBody>
       <CardFooter>
-        <Button
-          fullWidth
-          as={Link}
-          color="secondary"
-          href="#"
-          variant="flat"
-        >
+        <Button fullWidth as={Link} color="secondary" href="#" variant="flat">
           Choisir ce plan
         </Button>
       </CardFooter>

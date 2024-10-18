@@ -1,10 +1,10 @@
 "use client";
 
-import type {RadioProps} from "@nextui-org/react";
+import type { RadioProps } from "@nextui-org/react";
 
 import React from "react";
-import {Chip, Radio} from "@nextui-org/react";
-import {cn} from "@nextui-org/react";
+import { Chip, Radio } from "@nextui-org/react";
+import { cn } from "@nextui-org/react";
 
 export type PaymentMethodRadioProps = RadioProps & {
   icon?: React.ReactNode;
@@ -13,7 +13,10 @@ export type PaymentMethodRadioProps = RadioProps & {
   isRecommended?: boolean;
 };
 
-const PaymentMethodRadio = React.forwardRef<HTMLInputElement, PaymentMethodRadioProps>(
+const PaymentMethodRadio = React.forwardRef<
+  HTMLInputElement,
+  PaymentMethodRadioProps
+>(
   (
     {
       label,
@@ -55,12 +58,18 @@ const PaymentMethodRadio = React.forwardRef<HTMLInputElement, PaymentMethodRadio
               </Chip>
             )}
             {isRecommended && (
-              <Chip className="h-6 p-0 text-tiny" color="success" variant="flat">
+              <Chip
+                className="h-6 p-0 text-tiny"
+                color="success"
+                variant="flat"
+              >
                 Recommended
               </Chip>
             )}
           </div>
-          <p className="text-tiny text-default-400">{description || children}</p>
+          <p className="text-tiny text-default-400">
+            {description || children}
+          </p>
         </div>
       </div>
     </Radio>

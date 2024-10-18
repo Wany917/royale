@@ -1,19 +1,28 @@
 "use client";
 
 import React from "react";
-import {Avatar, Button, Spacer, Tooltip, useDisclosure} from "@nextui-org/react";
-import {Icon} from "@iconify/react";
-import {useMediaQuery} from "usehooks-ts";
-import {cn} from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Spacer,
+  Tooltip,
+  useDisclosure,
+} from "@nextui-org/react";
+import { Icon } from "@iconify/react";
+import { useMediaQuery } from "usehooks-ts";
+import { cn } from "@nextui-org/react";
 
 import { Logo } from "@/components/icons";
 import SidebarDrawer from "@/components/dashboard/sidebar-drawer";
 import Sidebar from "@/components/dashboard/sidebar";
+import { items } from "@/mock/_items";
 
-import {items} from "@/mock/_items";
-
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const {isOpen, onOpenChange} = useDisclosure();
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { isOpen, onOpenChange } = useDisclosure();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -24,7 +33,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex h-dvh w-full gap-4">
       <SidebarDrawer
-        className={cn("min-w-[288px] rounded-lg", {"min-w-[76px]": isCollapsed})}
+        className={cn("min-w-[288px] rounded-lg", {
+          "min-w-[76px]": isCollapsed,
+        })}
         hideCloseButton={true}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -46,13 +57,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Logo className="text-background" />
             </div>
             <span
-              className={cn("w-full text-small font-bold uppercase opacity-100", {
-                "w-0 opacity-0": isCollapsed,
-              })}
+              className={cn(
+                "w-full text-small font-bold uppercase opacity-100",
+                {
+                  "w-0 opacity-0": isCollapsed,
+                },
+              )}
             >
               Acme
             </span>
-            <div className={cn("flex-end flex", {hidden: isCollapsed})}>
+            <div className={cn("flex-end flex", { hidden: isCollapsed })}>
               <Icon
                 className="cursor-pointer dark:text-primary-foreground/60 [&>g]:stroke-[1px]"
                 icon="solar:round-alt-arrow-left-line-duotone"
@@ -68,9 +82,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               size="sm"
               src="https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/avatars/e1b8ec120710c09589a12c0004f85825.jpg"
             />
-            <div className={cn("flex max-w-full flex-col", {hidden: isCollapsed})}>
-              <p className="text-small font-medium text-foreground">Kate Moore</p>
-              <p className="text-tiny font-medium text-default-400">Customer Support</p>
+            <div
+              className={cn("flex max-w-full flex-col", {
+                hidden: isCollapsed,
+              })}
+            >
+              <p className="text-small font-medium text-foreground">
+                Kate Moore
+              </p>
+              <p className="text-tiny font-medium text-default-400">
+                Customer Support
+              </p>
             </div>
           </div>
 
@@ -110,7 +132,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 />
               </Button>
             )}
-            <Tooltip content="Support" isDisabled={!isCollapsed} placement="right">
+            <Tooltip
+              content="Support"
+              isDisabled={!isCollapsed}
+              placement="right"
+            >
               <Button
                 fullWidth
                 className={cn(
@@ -142,11 +168,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 )}
               </Button>
             </Tooltip>
-            <Tooltip content="Log Out" isDisabled={!isCollapsed} placement="right">
+            <Tooltip
+              content="Log Out"
+              isDisabled={!isCollapsed}
+              placement="right"
+            >
               <Button
-                className={cn("justify-start text-default-500 data-[hover=true]:text-foreground", {
-                  "justify-center": isCollapsed,
-                })}
+                className={cn(
+                  "justify-start text-default-500 data-[hover=true]:text-foreground",
+                  {
+                    "justify-center": isCollapsed,
+                  },
+                )}
                 isIconOnly={isCollapsed}
                 startContent={
                   isCollapsed ? null : (
@@ -174,9 +207,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </SidebarDrawer>
 
-      <main className="w-full max-w-2xl flex-1 p-4">
-        {children}
-      </main>
+      <main className="w-full max-w-2xl flex-1 p-4">{children}</main>
     </div>
   );
 }

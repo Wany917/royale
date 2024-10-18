@@ -4,12 +4,14 @@ import { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, LazyMotion, m, domAnimation } from "framer-motion";
 import { Button, RadioGroup } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
+
 import OrderSummary from "@/components/cart/order-summary";
 import PaymentMethodRadio from "@/components/cart/payment-method-radio";
 import { products } from "@/mock/_products-tiers";
 import { PayPalIcon } from "@/components/icons";
 import { useCheckout } from "@/context/checkout-context";
+import {createOrderAction} from "@/app/cart/actions";
 
 export default function Page() {
   const [[pageIndex, direction], setPage] = useState<[number, number]>([0, 0]);
@@ -26,7 +28,10 @@ export default function Page() {
     // Mise à jour des valeurs du contexte
     setCurrentStep(pageIndex);
     setCartItemCount(cartItems.length);
-    const total = cartItems.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    const total = cartItems
+      .reduce((sum, item) => sum + item.price, 0)
+      .toFixed(2);
+
     setCartTotal(`$${total}`);
   }, [pageIndex, cartItems, setCurrentStep, setCartItemCount, setCartTotal]);
 
@@ -54,7 +59,7 @@ export default function Page() {
 
   const handleCTAClick = () => {
     if (pageIndex === 1) {
-      router.push('/checkout/f1a72da5-5ad6-493f-a8f9-e602bfe8c026');
+      createOrderAction([{ id: "211ab80e-e457-4b50-bc94-fb418262682b", quantity: 10 }]);
     } else {
       paginate(1);
     }
@@ -151,7 +156,9 @@ export default function Page() {
             variants={variants}
             onSubmit={(e) => e.preventDefault()}
           >
-            <h1 className="text-2xl font-medium dark:text-white">{stepTitle}</h1>
+            <h1 className="text-2xl font-medium dark:text-white">
+              {stepTitle}
+            </h1>
             {stepsContent}
             <Button
               fullWidth

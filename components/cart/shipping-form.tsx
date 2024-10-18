@@ -1,10 +1,15 @@
 "use client";
 
-import type {InputProps} from "@nextui-org/react";
+import type { InputProps } from "@nextui-org/react";
 
 import React from "react";
-import {Autocomplete, AutocompleteItem, Avatar, Input} from "@nextui-org/react";
-import {cn} from "@nextui-org/react";
+import {
+  Autocomplete,
+  AutocompleteItem,
+  Avatar,
+  Input,
+} from "@nextui-org/react";
+import { cn } from "@nextui-org/react";
 
 import countries from "@/data/countries";
 
@@ -14,10 +19,14 @@ export type ShippingFormProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const ShippingForm = React.forwardRef<HTMLDivElement, ShippingFormProps>(
-  ({variant = "flat", className, hideTitle}, ref) => {
+  ({ variant = "flat", className, hideTitle }, ref) => {
     return (
       <div ref={ref} className={cn("flex flex-col gap-4", className)}>
-        {!hideTitle && <span className="relative text-foreground-500">Shipping Information</span>}
+        {!hideTitle && (
+          <span className="relative text-foreground-500">
+            Shipping Information
+          </span>
+        )}
         <Input
           isRequired
           label="Email address"

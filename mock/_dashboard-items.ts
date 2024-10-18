@@ -23,5 +23,5 @@ export const dashboardItems: SidebarItem[] = [
     title: "Settings",
     icon: "cog",
     href: "/dashboard/settings",
-  },    
+  },
 ];

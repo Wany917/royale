@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import {Button, Tab, Tabs} from "@nextui-org/react";
-import {Icon} from "@iconify/react";
+import { Button, Tab, Tabs } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 
 import ProfileSetting from "@/components/dashboard/setting/profile-setting";
 import AppearanceSetting from "@/components/dashboard/setting/appearance-setting";
@@ -22,7 +22,9 @@ export default function SettingsPage() {
             width={20}
           />
         </Button>
-        <h1 className="text-3xl font-bold leading-9 text-default-foreground">Settings</h1>
+        <h1 className="text-3xl font-bold leading-9 text-default-foreground">
+          Settings
+        </h1>
       </div>
       <h2 className="mt-2 text-small text-default-500">
         Customize settings, email preferences, and web appearance.
