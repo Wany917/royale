@@ -2,12 +2,11 @@
 
 import React from "react";
 import { Button, Divider, Input } from "@nextui-org/react";
-
-import { Product } from "@/types/product-types";
+import { Tables } from "@/types/supabase";
 
 export type OrderSummaryProps = React.HTMLAttributes<HTMLDivElement> & {
   hideTitle?: boolean;
-  items: Product[];
+  items: Tables<"products">[];
 };
 
 const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(

@@ -1,38 +1,44 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Tabs, Tab, Checkbox, Spacer } from "@nextui-org/react";
 
 import CardProduct from "./CardProduct";
 
-import { products } from "@/mock/_products-tiers";
+import { useProductsStore } from "@/stores/use-products";
 
-interface ProductListProps {}
-
-export default function ProductList(props: ProductListProps) {
+export default function ProductList() {
   const [showVipOnly, setShowVipOnly] = useState(false);
   const [selectedDuration, setSelectedDuration] = useState("all");
+  const { products, isLoading, error, fetchProducts } = useProductsStore();
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const groupedProducts = useMemo(() => {
     const durations = {
       all: "Tous les plans",
-      days: "Plans en jours",
-      months: "Plans en mois",
-      lifetime: "Plans à vie",
+      days: "Par jours",
+      months: "Par mois",
+      lifetime: "À vie",
     };
 
     const filteredProducts = products.filter(
       (product) =>
         (showVipOnly ? product.is_vip : true) &&
         (selectedDuration === "all" ||
-          (selectedDuration === "days" && product.duration.includes("day")) ||
+          (selectedDuration === "days" &&
+            product.duration < 30 &&
+            product.duration !== 0) ||
           (selectedDuration === "months" &&
-            product.duration.includes("month")) ||
-          (selectedDuration === "lifetime" && product.duration === "Lifetime")),
+            product.duration > 29 &&
+            product.duration !== 0) ||
+          (selectedDuration === "lifetime" && product.duration === 0))
     );
 
     return { durations, filteredProducts };
-  }, [showVipOnly, selectedDuration]);
+  }, [showVipOnly, selectedDuration, products]);
 
   return (
     <div className="relative flex max-w-7xl flex-col items-center py-24">
@@ -85,11 +91,15 @@ export default function ProductList(props: ProductListProps) {
         </Checkbox>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-        {groupedProducts.filteredProducts.map((product) => (
-          <CardProduct key={product.id} product={product} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="text-center text-lg">Loading...</div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
+          {groupedProducts.filteredProducts.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))}
+        </div>
+      )}
 
       <Spacer y={12} />
 

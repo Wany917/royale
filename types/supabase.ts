@@ -4,232 +4,191 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export type Database = {
   graphql_public: {
     Tables: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       graphql: {
         Args: {
-          operationName?: string;
-          query?: string;
-          variables?: Json;
-          extensions?: Json;
-        };
-        Returns: Json;
-      };
-    };
+          operationName?: string
+          query?: string
+          variables?: Json
+          extensions?: Json
+        }
+        Returns: Json
+      }
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
-      categories: {
-        Row: {
-          created_at: string | null;
-          description: string | null;
-          id: string;
-          name: string;
-          updated_at: string | null;
-        };
-        Insert: {
-          created_at?: string | null;
-          description?: string | null;
-          id?: string;
-          name: string;
-          updated_at?: string | null;
-        };
-        Update: {
-          created_at?: string | null;
-          description?: string | null;
-          id?: string;
-          name?: string;
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
-      customers: {
-        Row: {
-          id: string;
-          stripe_customer_id: string | null;
-        };
-        Insert: {
-          id: string;
-          stripe_customer_id?: string | null;
-        };
-        Update: {
-          id?: string;
-          stripe_customer_id?: string | null;
-        };
-        Relationships: [];
-      };
       order_items: {
         Row: {
-          created_at: string | null;
-          id: string;
-          order_id: string | null;
-          price_at_time: number;
-          product_id: string | null;
-          quantity: number;
-          updated_at: string | null;
-        };
+          created_at: string | null
+          id: string
+          order_id: string | null
+          price_at_time: number
+          product_id: string | null
+          quantity: number
+          updated_at: string | null
+        }
         Insert: {
-          created_at?: string | null;
-          id?: string;
-          order_id?: string | null;
-          price_at_time: number;
-          product_id?: string | null;
-          quantity: number;
-          updated_at?: string | null;
-        };
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          price_at_time: number
+          product_id?: string | null
+          quantity: number
+          updated_at?: string | null
+        }
         Update: {
-          created_at?: string | null;
-          id?: string;
-          order_id?: string | null;
-          price_at_time?: number;
-          product_id?: string | null;
-          quantity?: number;
-          updated_at?: string | null;
-        };
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          price_at_time?: number
+          product_id?: string | null
+          quantity?: number
+          updated_at?: string | null
+        }
         Relationships: [
           {
-            foreignKeyName: "order_items_order_id_fkey";
-            columns: ["order_id"];
-            isOneToOne: false;
-            referencedRelation: "orders";
-            referencedColumns: ["id"];
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "order_items_product_id_fkey";
-            columns: ["product_id"];
-            isOneToOne: false;
-            referencedRelation: "products";
-            referencedColumns: ["id"];
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       orders: {
         Row: {
-          created_at: string | null;
-          customer_id: string;
-          id: string;
-          payment_method: string;
-          payment_status: string;
-          total_amount: number;
-          updated_at: string | null;
-        };
+          created_at: string | null
+          customer_id: string
+          id: string
+          payment_method: string
+          payment_status: string
+          total_amount: number
+          updated_at: string | null
+        }
         Insert: {
-          created_at?: string | null;
-          customer_id: string;
-          id?: string;
-          payment_method?: string;
-          payment_status?: string;
-          total_amount: number;
-          updated_at?: string | null;
-        };
+          created_at?: string | null
+          customer_id: string
+          id?: string
+          payment_method?: string
+          payment_status?: string
+          total_amount: number
+          updated_at?: string | null
+        }
         Update: {
-          created_at?: string | null;
-          customer_id?: string;
-          id?: string;
-          payment_method?: string;
-          payment_status?: string;
-          total_amount?: number;
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
+          created_at?: string | null
+          customer_id?: string
+          id?: string
+          payment_method?: string
+          payment_status?: string
+          total_amount?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       products: {
         Row: {
-          category_id: string | null;
-          created_at: string | null;
-          description: string | null;
-          id: string;
-          image_url: string | null;
-          name: string;
-          price: number;
-          updated_at: string | null;
-        };
+          created_at: string | null
+          description: string | null
+          duration: number
+          features: string[] | null
+          id: string
+          image_url: string | null
+          is_vip: boolean
+          name: string
+          preset_code: string | null
+          price: number
+          stock: number
+          updated_at: string | null
+        }
         Insert: {
-          category_id?: string | null;
-          created_at?: string | null;
-          description?: string | null;
-          id?: string;
-          image_url?: string | null;
-          name: string;
-          price: number;
-          updated_at?: string | null;
-        };
+          created_at?: string | null
+          description?: string | null
+          duration: number
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_vip?: boolean
+          name: string
+          preset_code?: string | null
+          price: number
+          stock?: number
+          updated_at?: string | null
+        }
         Update: {
-          category_id?: string | null;
-          created_at?: string | null;
-          description?: string | null;
-          id?: string;
-          image_url?: string | null;
-          name?: string;
-          price?: number;
-          updated_at?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "products_category_id_fkey";
-            columns: ["category_id"];
-            isOneToOne: false;
-            referencedRelation: "categories";
-            referencedColumns: ["id"];
-          },
-        ];
-      };
+          created_at?: string | null
+          description?: string | null
+          duration?: number
+          features?: string[] | null
+          id?: string
+          image_url?: string | null
+          is_vip?: boolean
+          name?: string
+          preset_code?: string | null
+          price?: number
+          stock?: number
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       users: {
         Row: {
-          created_at: string | null;
-          firstname: string | null;
-          id: string;
-          lastname: string | null;
-          updated_at: string | null;
-        };
+          created_at: string | null
+          id: string
+          updated_at: string | null
+        }
         Insert: {
-          created_at?: string | null;
-          firstname?: string | null;
-          id: string;
-          lastname?: string | null;
-          updated_at?: string | null;
-        };
+          created_at?: string | null
+          id: string
+          updated_at?: string | null
+        }
         Update: {
-          created_at?: string | null;
-          firstname?: string | null;
-          id?: string;
-          lastname?: string | null;
-          updated_at?: string | null;
-        };
-        Relationships: [];
-      };
-    };
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
-};
+      [_ in never]: never
+    }
+  }
+}
 
-type PublicSchema = Database[Extract<keyof Database, "public">];
+type PublicSchema = Database[Extract<keyof Database, "public">]
 
 export type Tables<
   PublicTableNameOrOptions extends
@@ -242,7 +201,7 @@ export type Tables<
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
       Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
@@ -250,11 +209,11 @@ export type Tables<
         PublicSchema["Views"])
     ? (PublicSchema["Tables"] &
         PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R;
+        Row: infer R
       }
       ? R
       : never
-    : never;
+    : never
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
@@ -265,17 +224,17 @@ export type TablesInsert<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I;
+        Insert: infer I
       }
       ? I
       : never
-    : never;
+    : never
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
@@ -286,17 +245,17 @@ export type TablesUpdate<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U;
+        Update: infer U
       }
       ? U
       : never
-    : never;
+    : never
 
 export type Enums<
   PublicEnumNameOrOptions extends
@@ -309,14 +268,14 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
-    : never;
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof PublicSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof Database;
+    schema: keyof Database
   }
     ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
@@ -324,4 +283,4 @@ export type CompositeTypes<
   ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
     ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never;
+    : never

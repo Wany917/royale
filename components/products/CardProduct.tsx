@@ -13,14 +13,16 @@ import {
   cn,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-
-import { Product } from "@/types/product-types";
+import { Tables } from "@/types/supabase";
+import { useCartStore } from "@/stores/use-cart";
 
 interface CardProductProps {
-  product: Product;
+  product: Tables<"products">;
 }
 
 export default function CardProduct({ product }: CardProductProps) {
+  const addToCart = useCartStore((state) => state.addToCart);
+  
   return (
     <Card
       isBlurred
@@ -38,6 +40,17 @@ export default function CardProduct({ product }: CardProductProps) {
           VIP
         </Chip>
       ) : null}
+      {product.stock == 0 ? (
+        <Chip
+          className={`absolute ${
+            product.is_vip ? "right-14 mr-3" : "right-4"
+          } top-4`}
+          color="secondary"
+          variant="flat"
+        >
+          {product.stock} LEFT
+        </Chip>
+      ) : null}
       <CardHeader className="flex flex-col items-start gap-2 pb-6">
         <h2 className="text-large font-medium">{product.name}</h2>
         <p className="text-medium text-default-500">{product.description}</p>
@@ -49,7 +62,19 @@ export default function CardProduct({ product }: CardProductProps) {
             {product.price}€
           </span>
           <span className="text-small font-medium text-default-400">
-            / {product.duration}
+            /{" "}
+            {(() => {
+              if (product.duration === 0) {
+                return "lifetime";
+              } else if (product.duration > 29) {
+                const months = Math.floor(product.duration / 30);
+                return `${months} month${months > 1 ? "s" : ""}`;
+              } else {
+                return `${product.duration} day${
+                  product.duration > 1 ? "s" : ""
+                }`;
+              }
+            })()}
           </span>
         </p>
         <ul className="flex flex-col gap-2">
@@ -62,7 +87,14 @@ export default function CardProduct({ product }: CardProductProps) {
         </ul>
       </CardBody>
       <CardFooter>
-        <Button fullWidth as={Link} color="secondary" href="#" variant="flat">
+        <Button
+          fullWidth
+          as={Link}
+          color="secondary"
+          onClick={() => addToCart(product)} // TODO: Afficher un message de succès pour l'ajout dans le panier
+          variant="flat"
+          disabled={product.stock === 0}
+        >
           Choisir ce plan
         </Button>
       </CardFooter>

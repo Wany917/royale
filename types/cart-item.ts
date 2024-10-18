@@ -1,5 +1,6 @@
-interface CartItem {
-  id: string;
+import { Tables } from "./supabase";
+
+interface CartItem extends Tables<"products"> {
   quantity: number;
 }
 

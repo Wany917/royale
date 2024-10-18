@@ -52,8 +52,8 @@ export async function createOrderAction(cartItems: CartItem[]) {
       total_amount: totalPrice,
       payment_status: "PENDING",
       payment_method: "PAYPAL",
-      updated_at: null,
-      created_at: null,
+      updated_at: "now()",
+      created_at: "now()",
     });
 
     const orderItems = products.map((product) => ({
@@ -62,8 +62,8 @@ export async function createOrderAction(cartItems: CartItem[]) {
       product_id: product.id,
       quantity: product.quantity,
       price_at_time: product.price,
-      updated_at: null,
-      created_at: null,
+      updated_at: "now()",
+      created_at: "now()",
     }));
 
     await createOrderItems(supabase, orderItems);

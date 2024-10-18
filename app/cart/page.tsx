@@ -4,36 +4,21 @@ import { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, LazyMotion, m, domAnimation } from "framer-motion";
 import { Button, RadioGroup } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-import { useRouter } from "next/navigation";
 
 import OrderSummary from "@/components/cart/order-summary";
 import PaymentMethodRadio from "@/components/cart/payment-method-radio";
 import { products } from "@/mock/_products-tiers";
 import { PayPalIcon } from "@/components/icons";
-import { useCheckout } from "@/context/checkout-context";
-import {createOrderAction} from "@/app/cart/actions";
+import { useCartStore } from "@/stores/use-cart";
+import { createOrderAction } from "./actions";
 
 export default function Page() {
   const [[pageIndex, direction], setPage] = useState<[number, number]>([0, 0]);
-  const [isClient, setIsClient] = useState(false);
-  const [cartItems, setCartItems] = useState(products.slice(0, 3)); // Articles du panier simulés
-  const router = useRouter();
-
-  // Récupération des fonctions du contexte pour mettre à jour les valeurs
-  const { setCurrentStep, setCartItemCount, setCartTotal } = useCheckout();
+  const { setCurrentStep, cart, totalItems, totalPrice } = useCartStore();
 
   useEffect(() => {
-    setIsClient(true);
-
-    // Mise à jour des valeurs du contexte
     setCurrentStep(pageIndex);
-    setCartItemCount(cartItems.length);
-    const total = cartItems
-      .reduce((sum, item) => sum + item.price, 0)
-      .toFixed(2);
-
-    setCartTotal(`$${total}`);
-  }, [pageIndex, cartItems, setCurrentStep, setCartItemCount, setCartTotal]);
+  }, [pageIndex]);
 
   const variants = {
     enter: (direction: number) => ({
@@ -59,7 +44,7 @@ export default function Page() {
 
   const handleCTAClick = () => {
     if (pageIndex === 1) {
-      createOrderAction([{ id: "211ab80e-e457-4b50-bc94-fb418262682b", quantity: 10 }]);
+      createOrderAction(cart);
     } else {
       paginate(1);
     }
@@ -96,7 +81,7 @@ export default function Page() {
 
     switch (pageIndex) {
       case 0:
-        return <OrderSummary hideTitle items={cartItems} />;
+        return <OrderSummary hideTitle items={cart} />;
       case 1:
         return (
           <div className="flex flex-col gap-4">
@@ -119,11 +104,7 @@ export default function Page() {
       default:
         return null;
     }
-  }, [pageIndex, cartItems]);
-
-  if (!isClient) {
-    return null;
-  }
+  }, [pageIndex, cart]);
 
   return (
     <>
