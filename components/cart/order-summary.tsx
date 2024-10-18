@@ -36,7 +36,7 @@ const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
           ))}
         </ul>
         <div>
-          <form
+          <div
             className="mb-4 mt-6 flex items-end gap-2"
             onSubmit={(e) => e.preventDefault()}
           >
@@ -52,7 +52,7 @@ const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
               variant="bordered"
             />
             <Button type="submit">Apply</Button>
-          </form>
+          </div>
           <dl className="flex flex-col gap-4 py-4">
             <div className="flex justify-between">
               <dt className="text-small text-default-500">Subtotal</dt>
