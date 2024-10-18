@@ -3,6 +3,7 @@
 import React from "react";
 import { Button, Divider, Input } from "@nextui-org/react";
 import { Tables } from "@/types/supabase";
+import { useCartStore } from "@/stores/use-cart";
 
 export type OrderSummaryProps = React.HTMLAttributes<HTMLDivElement> & {
   hideTitle?: boolean;
@@ -11,9 +12,9 @@ export type OrderSummaryProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
   ({ hideTitle, items, ...props }, ref) => {
+    const { totalPrice } = useCartStore();
     const subtotal = items.reduce((acc, item) => acc + item.price, 0);
     const tax = subtotal * 0.15;
-    const total = subtotal + tax;
 
     return (
       <div ref={ref} {...props}>
@@ -72,7 +73,7 @@ const OrderSummary = React.forwardRef<HTMLDivElement, OrderSummaryProps>(
                 Total
               </dt>
               <dd className="text-small font-semibold text-default-700">
-                ${total.toFixed(2)}
+                ${totalPrice.toFixed(2)}
               </dd>
             </div>
           </dl>

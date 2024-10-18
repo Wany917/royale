@@ -14,7 +14,7 @@ import { createOrderAction } from "./actions";
 
 export default function Page() {
   const [[pageIndex, direction], setPage] = useState<[number, number]>([0, 0]);
-  const { setCurrentStep, cart, totalItems, totalPrice } = useCartStore();
+  const { setCurrentStep, cart } = useCartStore();
 
   useEffect(() => {
     setCurrentStep(pageIndex);
