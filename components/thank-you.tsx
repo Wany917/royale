@@ -5,6 +5,7 @@ import { Button, Spinner } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";
+import { createOrderAction } from "@/app/cart/actions";
 
 const ThankYouPage = () => {
   const router = useRouter();

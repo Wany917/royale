@@ -16,6 +16,7 @@ export async function createOrderAction(cartItems: CartItem[]) {
     redirect("/cart");
   }
 
+  let URL;
   const supabase = createClient();
 
   try {
@@ -67,11 +68,11 @@ export async function createOrderAction(cartItems: CartItem[]) {
 
     await createOrderItems(supabase, orderItems);
 
-    console.log(`/checkout/${order.id}`);
-
-    redirect(`/checkout/${order.id}`);
-    return;
+    URL = `/checkout/${order.id}`;
   } catch (error) {
+    console.log(error);
     redirect("/cart");
   }
+  
+  return redirect(URL);
 }
