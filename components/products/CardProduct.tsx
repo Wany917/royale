@@ -8,10 +8,9 @@ import {
   CardFooter,
   CardHeader,
   Divider,
-  Link,
   Chip,
   cn,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { Tables } from "@/types/supabase";
 import { useCartStore } from "@/stores/use-cart";
@@ -23,79 +22,100 @@ interface CardProductProps {
 export default function CardProduct({ product }: CardProductProps) {
   const addToCart = useCartStore((state) => state.addToCart);
   
+  const formatDuration = (duration: number) => {
+    if (duration === 0) {
+      return "lifetime";
+    } else if (duration > 29) {
+      const months = Math.floor(duration / 30);
+      return `${months} month${months > 1 ? "s" : ""}`;
+    }
+    return `${duration} day${duration > 1 ? "s" : ""}`;
+  };
+
+  const hasNoStock = product.stock === 0;
+
   return (
     <Card
       isBlurred
-      className={cn("bg-background/60 p-3 dark:bg-default-100/50", {
-        "!border-small border-secondary/50": product.is_vip,
-      })}
+      className={cn(
+        "bg-background/60 dark:bg-default-100/50 h-[450px]",
+        {
+          "!border-small border-secondary/50": product.is_vip,
+        }
+      )}
       shadow="md"
     >
-      {product.is_vip ? (
-        <Chip
-          className="absolute right-4 top-4"
-          color="secondary"
-          variant="flat"
-        >
-          VIP
-        </Chip>
-      ) : null}
-      {product.stock == 0 ? (
-        <Chip
-          className={`absolute ${
-            product.is_vip ? "right-14 mr-3" : "right-4"
-          } top-4`}
-          color="secondary"
-          variant="flat"
-        >
-          {product.stock} LEFT
-        </Chip>
-      ) : null}
-      <CardHeader className="flex flex-col items-start gap-2 pb-6">
-        <h2 className="text-large font-medium">{product.name}</h2>
-        <p className="text-medium text-default-500">{product.description}</p>
+      <div className="absolute right-3 top-3 flex items-center gap-2">
+        {hasNoStock && (
+          <Chip
+            className="font-medium"
+            color="danger"
+            size="sm"
+            variant="flat"
+          >
+            Rupture de stock
+          </Chip>
+        )}
+        {product.is_vip && (
+          <Chip
+            className="font-medium"
+            color="secondary"
+            size="sm"
+            variant="flat"
+          >
+            VIP
+          </Chip>
+        )}
+      </div>
+
+      <CardHeader className="p-3 pt-12 mx-3">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-large font-semibold text-center">{product.name}</h2>
+          <p className="text-small text-default-500">{product.description}</p>
+        </div>
       </CardHeader>
-      <Divider />
-      <CardBody className="gap-8">
-        <p className="flex items-baseline gap-1 pt-2">
-          <span className="inline bg-gradient-to-br from-foreground to-foreground-600 bg-clip-text text-4xl font-semibold leading-7 tracking-tight text-transparent">
-            {product.price}€
-          </span>
-          <span className="text-small font-medium text-default-400">
-            /{" "}
-            {(() => {
-              if (product.duration === 0) {
-                return "lifetime";
-              } else if (product.duration > 29) {
-                const months = Math.floor(product.duration / 30);
-                return `${months} month${months > 1 ? "s" : ""}`;
-              } else {
-                return `${product.duration} day${
-                  product.duration > 1 ? "s" : ""
-                }`;
-              }
-            })()}
-          </span>
-        </p>
-        <ul className="flex flex-col gap-2">
-          {product.features?.map((feature, index) => (
-            <li key={index} className="flex items-center gap-2">
-              <Icon className="text-secondary" icon="ci:check" width={24} />
-              <p className="text-default-500">{feature}</p>
-            </li>
-          ))}
-        </ul>
+
+      <div className="px-6">
+        <Divider className="my-3 bg-default-400/20" />
+      </div>
+
+      <CardBody className="p-3 py-0 flex-1">
+        <div className="flex flex-col h-full">
+          <div className="mb-6 text-center">
+            <p className="flex items-baseline justify-center gap-1">
+              <span className="inline bg-gradient-to-br from-foreground to-foreground-600 bg-clip-text text-5xl font-bold leading-7 tracking-tight text-transparent py-5">
+                {product.price}€
+              </span>
+              <span className="text-small font-medium text-default-400">
+                / {formatDuration(product.duration)}
+              </span>
+            </p>
+          </div>
+
+          <ul className="flex flex-col gap-2.5 flex-1">
+            {product.features?.map((feature, index) => (
+              <li key={index} className="flex items-start gap-2">
+                <Icon 
+                  className="text-secondary flex-shrink-0 mt-1" 
+                  icon="ci:check" 
+                  width={20} 
+                />
+                <p className="text-default-500">{feature}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </CardBody>
-      <CardFooter>
+
+      <CardFooter className="p-3 pt-0">
         <Button
           fullWidth
-          as={Link}
           color="secondary"
-          onClick={() => addToCart(product)} // TODO: Afficher un message de succès pour l'ajout dans le panier
+          isDisabled={hasNoStock}
           variant="flat"
-          disabled={product.stock === 0}
+          onPress={() => addToCart(product)}
         >
-          Choisir ce plan
+          {hasNoStock ? "Indisponible" : "Choisir ce plan"}
         </Button>
       </CardFooter>
     </Card>

@@ -7,15 +7,15 @@ import {
   Spacer,
   Tooltip,
   useDisclosure,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { useMediaQuery } from "usehooks-ts";
-import { cn } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 
-import { Logo } from "@/components/icons";
 import SidebarDrawer from "@/components/dashboard/sidebar-drawer";
 import Sidebar from "@/components/dashboard/sidebar";
 import { items } from "@/mock/_items";
+import { Logo } from "@/components/icons";
 
 export default function DashboardLayout({
   children,
@@ -33,7 +33,7 @@ export default function DashboardLayout({
   return (
     <div className="flex h-dvh w-full gap-4">
       <SidebarDrawer
-        className={cn("min-w-[288px] rounded-lg", {
+        className={cn("min-w-[288px] rounded-r-lg", {
           "min-w-[76px]": isCollapsed,
         })}
         hideCloseButton={true}
@@ -42,7 +42,7 @@ export default function DashboardLayout({
       >
         <div
           className={cn(
-            "will-change relative flex h-full w-72 flex-col bg-default-100 p-6 transition-width",
+            "will-change relative flex h-full w-72 flex-col p-6 transition-width",
             {
               "w-[83px] items-center px-[6px] py-6": isCollapsed,
             },
@@ -64,7 +64,7 @@ export default function DashboardLayout({
                 },
               )}
             >
-              Acme
+              Royale
             </span>
             <div className={cn("flex-end flex", { hidden: isCollapsed })}>
               <Icon
@@ -207,7 +207,13 @@ export default function DashboardLayout({
         </div>
       </SidebarDrawer>
 
-      <main className="w-full max-w-2xl flex-1 p-4">{children}</main>
+      <div className="flex-1 overflow-hidden">
+        <div className="h-full overflow-y-auto">
+          <div className="container mx-auto max-w-[1600px] px-4 py-6">
+            {children}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

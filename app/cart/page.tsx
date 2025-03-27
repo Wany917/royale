@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, LazyMotion, m, domAnimation } from "framer-motion";
-import { Button, RadioGroup } from "@nextui-org/react";
+import { Button, RadioGroup } from "@heroui/react";
 import { Icon } from "@iconify/react";
 
 import OrderSummary from "@/components/cart/order-summary";

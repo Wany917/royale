@@ -1,7 +1,9 @@
+import Overview from "@/components/dashboard/overview";
+
 export default function Page() {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className="p-4">
+      <Overview />
     </div>
   );
 }

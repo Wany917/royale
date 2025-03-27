@@ -6,16 +6,16 @@ import {
   type ListboxProps,
   type ListboxSectionProps,
   type Selection,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import React from "react";
 import {
   Listbox,
   Tooltip,
   ListboxItem,
   ListboxSection,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { cn } from "@nextui-org/react";
+import { cn } from "@heroui/react";
 
 export enum SidebarItemType {
   Nest = "nest",

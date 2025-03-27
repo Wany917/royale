@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Tab, Tabs } from "@nextui-org/react";
+import { Button, Tab, Tabs } from "@heroui/react";
 import { Icon } from "@iconify/react";
 
 import ProfileSetting from "@/components/dashboard/setting/profile-setting";

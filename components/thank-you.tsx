@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Button, Spinner } from "@nextui-org/react";
+import { Button, Spinner } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";

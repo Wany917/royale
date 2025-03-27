@@ -1,6 +1,6 @@
 "use client";
 
-import type { InputProps } from "@nextui-org/react";
+import type { InputProps } from "@heroui/react";
 
 import React from "react";
 import {
@@ -8,8 +8,8 @@ import {
   AutocompleteItem,
   Avatar,
   Input,
-} from "@nextui-org/react";
-import { cn } from "@nextui-org/react";
+} from "@heroui/react";
+import { cn } from "@heroui/react";
 
 import countries from "@/data/countries";
 

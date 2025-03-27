@@ -1,6 +1,6 @@
 "use client";
 
-import { User } from "@nextui-org/react";
+import { User } from "@heroui/react";
 
 import { Logo } from "@/components/icons";
 

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
-import { Button, Input, Link, Checkbox } from "@nextui-org/react";
+import { Button, Input, Link, Checkbox } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

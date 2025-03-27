@@ -1,15 +1,43 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import { Tabs, Tab, Checkbox, Spacer } from "@nextui-org/react";
-
+import { Tabs, Tab, Checkbox, Spacer } from "@heroui/react";
+import { Video } from "../video";
 import CardProduct from "./CardProduct";
 
 import { useProductsStore } from "@/stores/use-products";
 
+
+const DURATION_VIDEOS = {
+  "all": {
+    title: "Découvrez tous nos produits",
+    description: "Un aperçu complet de notre gamme de produits et services.",
+    videoUrl: "https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4",
+    thumbnailUrl: "https://images.unsplash.com/photo-1702689955157-d32c9210345e?q=80&w=1200"
+  },
+  "days": {
+    title: "Plans Journaliers",
+    description: "La flexibilité maximale avec nos plans à court terme.",
+    videoUrl: "https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4",
+    thumbnailUrl: "https://images.unsplash.com/photo-1702638091529-17d546ba18b5?q=80&w=1200"
+  },
+  "months": {
+    title: "Plans Mensuels",
+    description: "La solution idéale pour un engagement à moyen terme.",
+    videoUrl: "https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4",
+    thumbnailUrl: "https://images.unsplash.com/photo-1702511464548-1a397cae1264?q=80&w=1200"
+  },
+  "lifetime": {
+    title: "Plans à Vie",
+    description: "Un investissement unique pour un accès illimité.",
+    videoUrl: "https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4",
+    thumbnailUrl: "https://images.unsplash.com/photo-1702851500258-9167ebdd8897?q=80&w=1200"
+  }
+};
+
 export default function ProductList() {
   const [showVipOnly, setShowVipOnly] = useState(false);
-  const [selectedDuration, setSelectedDuration] = useState("all");
+  const [selectedDuration, setSelectedDuration] = useState<keyof typeof DURATION_VIDEOS>("all");
   const { products, isLoading, error, fetchProducts } = useProductsStore();
 
   useEffect(() => {
@@ -61,9 +89,12 @@ export default function ProductList() {
           Notre gamme complète de produits et trouvez celui qui vous convient !
         </h1>
         <Spacer y={4} />
-        <h2 className="text-large text-default-500">
-          Découvrez le plan idéal !
-        </h2>
+        <div className="text-center space-y-2">
+          <h2 className="text-large text-default-500">
+            Découvrez le plan idéal !
+          </h2>
+          
+        </div>
       </div>
       <Spacer y={8} />
 
@@ -76,7 +107,7 @@ export default function ProductList() {
           }}
           radius="full"
           selectedKey={selectedDuration}
-          onSelectionChange={(key) => setSelectedDuration(key.toString())}
+          onSelectionChange={(key) => setSelectedDuration(key as keyof typeof DURATION_VIDEOS)}
         >
           {Object.entries(groupedProducts.durations).map(([key, value]) => (
             <Tab key={key} title={value} />
@@ -103,13 +134,10 @@ export default function ProductList() {
 
       <Spacer y={12} />
 
-      <div className="flex py-2">
-        <p className="text-default-400">
-          Royal&nbsp;
-          {/* <Link color="foreground" href="#" underline="always">
-            
-          </Link> */}
-        </p>
+      <div className="flex justify-center">
+            {DURATION_VIDEOS[selectedDuration] && (
+              <Video {...DURATION_VIDEOS[selectedDuration]} />
+            )}
       </div>
     </div>
   );

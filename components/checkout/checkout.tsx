@@ -15,7 +15,7 @@ import {
   RadioGroup,
   Listbox,
   ListboxItem,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
 
 import { createClient } from "@/utils/supabase/client";

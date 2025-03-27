@@ -1,85 +1,58 @@
-import { Chip } from "@nextui-org/react";
+import { Chip } from "@heroui/react";
 import { Icon } from "@iconify/react";
-
 import { SidebarItem } from "@/components/dashboard/sidebar";
 
 export const items: SidebarItem[] = [
   {
-    key: "home",
-    href: "#",
+    key: "overview",
+    href: "/dashboard",
     icon: "solar:home-2-linear",
-    title: "Home",
+    title: "Overview",
   },
   {
-    key: "projects",
-    href: "#",
+    key: "services",
+    href: "/dashboard/services",
     icon: "solar:widget-2-outline",
-    title: "Projects",
+    title: "Services",
     endContent: (
-      <Icon
-        className="text-default-400"
-        icon="solar:add-circle-line-duotone"
-        width={24}
-      />
-    ),
-  },
-  {
-    key: "tasks",
-    href: "#",
-    icon: "solar:checklist-minimalistic-outline",
-    title: "Tasks",
-    endContent: (
-      <Icon
-        className="text-default-400"
-        icon="solar:add-circle-line-duotone"
-        width={24}
-      />
-    ),
-  },
-  {
-    key: "team",
-    href: "#",
-    icon: "solar:users-group-two-rounded-outline",
-    title: "Team",
-  },
-  {
-    key: "tracker",
-    href: "#",
-    icon: "solar:sort-by-time-linear",
-    title: "Tracker",
-    endContent: (
-      <Chip size="sm" variant="flat">
-        New
+      <Chip size="sm" variant="flat" color="primary">
+        Active
       </Chip>
     ),
   },
   {
-    key: "analytics",
-    href: "#",
-    icon: "solar:chart-outline",
-    title: "Analytics",
+    key: "api-manager",
+    href: "/dashboard/api-manager",
+    icon: "solar:code-square-linear",
+    title: "API Manager",
   },
   {
-    key: "perks",
-    href: "#",
-    icon: "solar:gift-linear",
-    title: "Perks",
+    key: "stresser",
+    href: "/dashboard/stresser",
+    icon: "solar:server-square-linear",
+    title: "Stresser",
+  },
+  {
+    key: "tutorials",
+    href: "/dashboard/tutorials",
+    icon: "solar:book-linear",
+    title: "Tutorials & Proof",
+  },
+  {
+    key: "support",
+    href: "/dashboard/support",
+    icon: "solar:chat-square-call-linear",
+    title: "Support",
     endContent: (
-      <Chip size="sm" variant="flat">
-        3
+      <Chip size="sm" variant="flat" color="warning">
+        2
       </Chip>
     ),
-  },
-  {
-    key: "expenses",
-    href: "#",
-    icon: "solar:bill-list-outline",
-    title: "Expenses",
   },
   {
     key: "settings",
     href: "/dashboard/settings",
-    icon: "solar:settings-outline",
+    icon: "solar:settings-linear",
     title: "Settings",
   },
 ];

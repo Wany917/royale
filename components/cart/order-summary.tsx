@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Divider, Input } from "@nextui-org/react";
+import { Button, Divider, Input } from "@heroui/react";
 import { Tables } from "@/types/supabase";
 import { useCartStore } from "@/stores/use-cart";
 

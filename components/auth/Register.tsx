@@ -8,7 +8,7 @@ import {
   Checkbox,
   Card,
   CardBody,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Icon } from "@iconify/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
