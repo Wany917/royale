@@ -1,4 +1,3 @@
-// tailwind.config.js
 import { heroui } from "@heroui/theme";
 
 /** @type {import('tailwindcss').Config} */
@@ -21,7 +20,7 @@ module.exports = {
     heroui({
       themes: {
         dark: {
-          layout: {}, // keep default layout tokens
+          layout: {},
           colors: {
             background: "#0A0F1C",
             foreground: "#E2E8F0",
@@ -31,7 +30,7 @@ module.exports = {
               200: "#99CEFF",
               300: "#66B5FF",
               400: "#339CFF",
-              500: "#0083FF",  // Base primary color
+              500: "#0083FF",
               600: "#0069CC",
               700: "#004F99",
               800: "#003566",
@@ -46,7 +45,7 @@ module.exports = {
               200: "#9CCFFF",
               300: "#76BCFF",
               400: "#4FA9FF",
-              500: "#2996FF",  // Base secondary color
+              500: "#2996FF",
               600: "#2178CC",
               700: "#195A99",
               800: "#113C66",
@@ -77,7 +76,7 @@ module.exports = {
           }
         },
         light: {
-          layout: {}, // keep default layout tokens
+          layout: {},
           colors: {
             background: "#F8FAFC",
             foreground: "#0F172A",
@@ -87,7 +86,7 @@ module.exports = {
               200: "#99CEFF",
               300: "#66B5FF",
               400: "#339CFF",
-              500: "#0083FF",  // Base primary color
+              500: "#0083FF",
               600: "#0069CC",
               700: "#004F99",
               800: "#003566",
@@ -102,7 +101,7 @@ module.exports = {
               200: "#9CCFFF",
               300: "#76BCFF",
               400: "#4FA9FF",
-              500: "#2996FF",  // Base secondary color
+              500: "#2996FF",
               600: "#2178CC",
               700: "#195A99",
               800: "#113C66",
